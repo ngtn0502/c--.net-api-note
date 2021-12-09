@@ -139,7 +139,7 @@ When a value is not reference to any value or out of scope, it will be automatic
 
 ### Code first - Database first
 
-`Code First`: mean that we write code in `Model Class` and ask `Entity Framework` to convert our code to `Databases/Tables`
+`Code First`: mean t  hat we write code in `Model Class` and ask `Entity Framework` to convert our code to `Databases/Tables`
 
 ## Step by step to run a .NET api with code first
 
@@ -152,3 +152,63 @@ To Remove All Migration:
 	Remove folder migrations in our project
 	Add new migrations
 Update database
+
+# .NET 5
+
+## .NET 5 with visual studio code
+
+- We use dotnet cli to create .net project
+
+> dotnet new webapi
+
+> dotnet new sln
+
+- Add project to sln file
+
+>dotnet sln add <project-name>
+
+- Run .NET project
+
+>dotnet run
+
+- Run .NEt project and react to every changes
+
+>dotnet watch run
+
+## How .NET project run
+
+### Program file
+
+1. It will go to `program.cs` file and create `host builder`
+
+2. All `configuration file` will be loaded into memory
+
+### Startup class
+
+1. `Configuration` file will be injected into `startup.cs` class
+
+2. `ConfigureServices` method is where other services is `inject` to our project - we use `dependency injection` here
+
+- This services will be automatically instanciate class when it needed and dispose it when it's no longer needed
+
+3. `Configure` file is where we add `middleware` into our project
+
+- When a request come into our API, it goes through a pipeline (HTTP pipeline) 
+
+- What we can do is add some `middleware application` into that pipeline and manipulate our request 
+
+4. Some `middleware`
+
+- app.UseDeveloperExceptionPage(): for handle exception in developer mode -> give some more information about what happen
+
+- app.UseHttpsRedirection(): if we visit page with `http` it will redirect us to `https`
+
+- app.UseRouting(): for routing purpose
+
+- app.UseAuthorization(): for authentication our api
+
+- app.UseEndpoints(): for application know what endpoint - what controller are available for routing
+
+### Launch Settings
+
+- Contain our configuration when our api is started 
