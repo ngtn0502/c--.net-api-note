@@ -212,3 +212,50 @@ Update database
 ### Launch Settings
 
 - Contain our configuration when our api is started 
+
+## Covention 
+
+- Use Pascal Case for property in .NET
+
+- Private field should start with underscore
+
+> private readonly IConfiguration _configuration;
+
+## Controller
+
+### Dependency
+
+- We inject our `DbContext` to the `constructor` of `controller`.
+
+- When the request come to the `controller` end point -> It will create `new intances` of all `dependency` that we inject to this `controller`
+
+<img src="./img/5.PNG" width="900">
+
+- Lifetime of dependency:
+
+	- Scoped: it's available for the lifetime of single HTTP request
+
+		> And once the request is finished, then the store context is disposed and it's released from memory.
+f
+# Entity Framework
+
+- Entity framework is a convention based
+
+> If we name property include Id -> It will set this property is the primary key of table
+
+- Create our table base on entity model
+
+> dotnet ef migrations add <Message>
+
+=> It will create `migration` file contain:
+
+	- Up method -> it will create our table -> create field for that table
+
+	- Down method -> when we add another `migration` -> it will called and drop the existing migration
+
+- Create our `database`
+
+> dotnet ef database update
+
+# Repository Pattern
+
