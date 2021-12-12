@@ -297,13 +297,13 @@ Apply migrations to context and create database if it not exist
 
 > Best practice that microsoft recommend to do
 
-<img src="./img/12.PNG" width="900">
+<img src="./img/12.png" width="900">
 
 # Seeding data
 
-<img src="./img/13.PNG" width="900">
+<img src="./img/13.png" width="900">
 
-<img src="./img/14.PNG" width="900">
+<img src="./img/14.png" width="900">
 
 # Repository Pattern
 
