@@ -155,6 +155,8 @@ Update database
 
 # .NET 5
 
+[Learn to build an e-commerce app with .Net Core and Angular](https://fpt-software.udemy.com/course/learn-to-build-an-e-commerce-app-with-net-core-and-angular/learn/lecture/18136742#overview)
+
 ## .NET 5 with visual studio code
 
 - We use dotnet cli to create .net project
@@ -223,7 +225,7 @@ Update database
 
 ## Controller
 
-### Dependency
+## Dependency
 
 - We inject our `DbContext` to the `constructor` of `controller`.
 
@@ -231,12 +233,16 @@ Update database
 
 <img src="./img/5.PNG" width="900">
 
-- Lifetime of dependency:
+## Lifetime of dependency:
 
-	- Scoped: it's available for the lifetime of single HTTP request
+- AddScoped: the dependence will be created and available for the lifetime of single HTTP request -> most use
 
-		> And once the request is finished, then the store context is disposed and it's released from memory.
-f
+> And once the request is finished, then the store context is disposed and it's released from memory.
+
+- AddTransient: the dependence will be created and available for the lifetime of individual method -> shorter lifetime than AddScoped
+
+- AddSingleton: the dependence will be created and available when the appliication start and never destroyed until application shutdown
+
 # Entity Framework
 
 - Entity framework is a convention based
@@ -257,5 +263,71 @@ f
 
 > dotnet ef database update
 
+# Relationship Convention in Entity Framework
+
+Entity Framework is conventional base so the relationship is setting by conventional
+
+## One to One
+
+
+
+## One to Manny
+
+In one - many relationship in entity framework => There is a convention of Entity Framework to allow us specify functionality when we delete one row => all relationship with that row will be delete to
+
+<img src="./img/9.PNG" width="900">
+
+## What is ViewModal?
+
+It is a class describe what will be sent from the client through our API
+
+# Configure The Migrations
+
+We can configure the column will created by EntityFramework => so we overide default configuration of entityframework
+
+<img src="./img/10.PNG" width="900">
+
+We need to overide default configuration
+
+<img src="./img/11.PNG" width="900">
+
+# Apply migrations when application start
+
+Apply migrations to context and create database if it not exist 
+
+> Best practice that microsoft recommend to do
+
+<img src="./img/12.PNG" width="900">
+
+# Seeding data
+
+<img src="./img/13.PNG" width="900">
+
+<img src="./img/14.PNG" width="900">
+
 # Repository Pattern
+
+<img src="./img/6.PNG" width="900">
+
+Advantages:
+
+- Decouple business code from data acess (DbContext)
+
+- Separation our concern
+
+- Minimise duplicate query logic
+
+<img src="./img/7.PNG" width="900">
+
+- Encapsulates the logic 
+
+<img src="./img/8.PNG" width="900">
+
+Consequences
+
+- Increased level of abstraction
+
+`Note`:
+
+> We add our repository as a service to startup.cs class to make it injectable into our controllers
 
