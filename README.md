@@ -305,6 +305,12 @@ Apply migrations to context and create database if it not exist
 
 <img src="./img/14.png" width="900">
 
+# Eager loading of navigation property 
+
+Eager loading is a way we tell `Entity framework` to load this navigation property along with return entity
+
+We use `Include` method to tell `Entity Framework` include what we want to include 
+
 # Repository Pattern
 
 <img src="./img/6.PNG" width="900">
@@ -331,3 +337,121 @@ Consequences
 
 > We add our repository as a service to startup.cs class to make it injectable into our controllers
 
+# Generic Repository & Specification
+
+The idea behind create `generic repository` is that we just have `a single generic repository` that can be used for `multiple entities`
+
+- Help avoid duplicate code
+
+- Type safety
+
+We already use it before 
+
+```
+DbSet<Product>
+```
+
+## IGeneric Repository
+
+<img src="./img/15.PNG" width="900">
+
+## Generic Repository
+
+Set method:
+
+> Set<T>()
+
+- It create a `DbSet` with `T` entity type that can be used to query and save instances of
+
+
+
+<img src="./img/16.PNG" width="900">
+
+## Startup.cs
+
+<img src="./img/17.PNG" width="900">
+
+## Why Generic Repository is an anti pattern?
+
+<img src="./img/18.PNG" width="900">
+
+1. By return an IQueryable list of query (by using Generic Expression)
+
+=> It expose the entire dataset through the IQueryable<T> which is what we return from that particular expression 
+
+=> Leaky abstraction 
+
+2. To much generalization
+
+## Specification pattern come into rescue
+
+1. Describle a query in an object 
+
+> Instead of using generic expression, we could define a specificaion object which contains the query we want to send to that particular method and it return IQueryable<T> which is expression tree 
+
+=> Generic list method would takes specification object as parameter
+
+<img src="./img/19.PNG" width="900">
+
+# SOLID
+
+The term SOLID is an acronym for 5 design principles intended to make software designs more understandable, flexible and maintainable
+
+- S: Single responsibility principle (SRP)
+
+- O: Open closed principle (OSP)
+
+- L: Liskov subtitution principle (LSP)
+
+- I: Interface segregation principle (ISP)
+
+- D: Dependency Inversion principle (DIP)
+
+```Single responsibility principle (SRP)```
+
+- Every module or class should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class
+
+> Each class and module should focus on a single task at a time
+> Everything in the class should be related to that single purpose 
+
+```Open closed principle (OSP)```
+
+- “Software entities should be open for extension, but closed for modification”
+ 
+- The design and writing of the code should be done in a way that new functionality should be added with minimum changes in the existing code 
+ 
+- The design should be done in a way to allow the adding of new functionality as new classes, keeping as much as possible existing code unchanged
+
+> Any new functionality should be implemented by adding new classes, attributes and methods, instead of changing the current ones or existing one
+
+=> SRP and OSP are highly depend on each others
+
+If we want to extend the functionality of method or class - we inherit it from abtracst class or interface - and we overide existing method
+
+=> It also call polymorphism
+
+```Lisko subtitution principle (LSP)```
+
+- Introduced by Barbara Liskov state that “objects in a program should be replaceable with instances of their sub-types without altering the correctness of that program”
+
+- If a program module is using a Base class, then the reference to the Base class can be replaced with a Derived class without affecting the functionality of the program module
+
+- We can also state that Derived types must be substitutable for their base types
+
+"S is a subtype of T, then objects of type T may be replaced with objects of type S"
+
+Derived types must be completely substitutable for their base types
+
+```Interface segregation principle (ISP)```
+
+- “Many client-specific interfaces are better than one general-purpose interface”
+ 
+- We should not enforce clients to implement interfaces that they don't use. Instead of creating one big interface we can break down it to smaller interfaces
+
+> It because when we implement one big fat interface we force to implement all the method of that interface -> hard to extend (when we do not need one method and when we need more method) -> violate OSP and SRP
+
+```Dependency Inversion principle (DIP)```
+
+- High-level modules should not depend on low level modules 
+
+<img src="./img/20.PNG" width="900">
