@@ -159,6 +159,10 @@ Update database
 
 ## .NET 5 with visual studio code
 
+First, we need to generate assets for Build and Debug .NET in VSC
+
+<img src="./img/21.PNG" width="900">
+
 - We use dotnet cli to create .net project
 
 > dotnet new webapi
@@ -224,6 +228,10 @@ Update database
 > private readonly IConfiguration _configuration;
 
 ## Controller
+
+Controller is the place where client request come to first
+
+Thank to [ApiController] attribue - respective method will be call base on the request url
 
 ## Dependency
 
@@ -310,6 +318,28 @@ Apply migrations to context and create database if it not exist
 Eager loading is a way we tell `Entity framework` to load this navigation property along with return entity
 
 We use `Include` method to tell `Entity Framework` include what we want to include 
+
+## DTOs
+
+Data Transfer object - it is what we return to client
+
+=> We use DTOs to shape the data to what we want to return
+
+# AutoMapper
+
+AutoMapper is a conventional-based tool help us automatically map data from one type to another type 
+
+Create Mapping Profile with configuration
+
+<img src="./img/22.PNG" width="900">
+
+Add AutoMapper as a Service so that we can inject it in a controller
+
+<img src="./img/23.png" width="900">
+
+Use Map method to map data from one to one
+
+<img src="./img/24.png" width="900">
 
 # Repository Pattern
 
