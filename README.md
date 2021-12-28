@@ -15,6 +15,7 @@ some little note by myself to remind what did i learn
 |     | [Namespace](#namespace)                   |
 | 2   | [Class](#class)                           |
 | 3   | [Unit Test](#unit-test)                   |
+| 10   | [Error Handling](#error-handling)                   |
 
 # Section 01 - THE BASIC
 
@@ -341,6 +342,91 @@ Use Map method to map data from one to one
 
 <img src="./img/24.png" width="900">
 
+# Error Handling
+
+## Why we need Exception Handling?
+
+Because we want our exception response to client be consistent
+
+=> Make client side easier to consume and handle error response.
+
+## How manny type of exception in HTTP?
+
+Notfound
+
+```
+
+    [HttpGet("notfound")]
+    public ActionResult GetNotFoundRequest()
+    {
+       var thing = _context.Products.Find(42);
+       if (thing == null) return NotFound(new ApiResponse(404));
+       return Ok();
+    }
+```
+Internal Server 
+
+```
+    [HttpGet("servererror")]
+    public ActionResult GetServerError()
+    {
+       var thing = _context.Products.Find(42);
+       var thingToReturn = thing.ToString();
+       return Ok();
+    }
+```
+Badrequest
+
+```
+    [HttpGet("badrequest")]
+    public ActionResult GetBadRequest()
+    {
+       return BadRequest(new ApiResponse(400));
+    }
+```
+Validation Exception
+
+```
+    [HttpGet("badrequest/{id}")]
+    public ActionResult GetNotFoundRequest(int id)
+    {
+       return Ok();
+    }
+
+```
+
+> We need to make all those response in consistent response
+
+> Exception Response and Exception Middleware come into play.
+
+## For handle badrequest and notfound
+
+We will use ApiResponse class for create our Api Error Response
+
+<img src="./img/25.PNG" width="900">
+
+```
+  	  [HttpGet("badrequest")]
+      public ActionResult GetBadRequest()
+      {
+         return BadRequest(new ApiResponse(400));
+      }
+```
+
+## For handle server exception 
+
+First we create middleware
+
+<img src="./img/26.PNG" width="900">
+
+Second we add middleware into startup.cs class
+
+<img src="./img/27.PNG" width="900">
+
+## For handle validation exception 
+
+udemy.com/course/learn-to-build-an-e-commerce-app-with-net-core-and-angular/learn/lecture/18137228#questions
+
 # Repository Pattern
 
 <img src="./img/6.PNG" width="900">
@@ -485,3 +571,5 @@ Derived types must be completely substitutable for their base types
 - High-level modules should not depend on low level modules 
 
 <img src="./img/20.PNG" width="900">
+
+
