@@ -10,14 +10,32 @@ some little note by myself to remind what did i learn
 
 | No. | Content                                   |
 | --- | ----------------------------------------- |
-|     |                                           |
+| 0   | [Interview](#interview) |
 | 1   | [Overview - Basic](#section-01-the-basic) |
 |     | [Namespace](#namespace)                   |
 | 2   | [Class](#class)                           |
 | 3   | [Unit Test](#unit-test)                   |
-| 10   | [Error Handling](#error-handling)                   |
+| 4   | [Error Handling](#error-handling)                   |
 
 # Section 01 - THE BASIC
+
+## .NET Framework, .NET Core, .NET 5.0, ASP.NET, ASP.NET Core
+
+.NET Framework: is a old-first-father version of dotNET - only support for window OS
+
+.NET Core: new version of dotNET, the upgrade version of .NET Framework - support for macOS, windowOS, linuxOS.
+
+.NET 5.0: the new version of .NET Core - add new feature and change the name from .Net Core to .Net 5.0 to prevent naming missunderstanding.
+
+ASP.NET Core: is a .NET 5.0 framwork, help us to create web-api and other kind of applicatoin
+
+<img src="./img/28.jpg" width="900">
+
+<img src="./img/29.jpg" width="900">
+
+<img src="./img/30.jpg" width="900">
+
+---
 
 We write `C#` in IDE and under the hood when we run `dotnet run`, `C# Compiler (.NET (SDK))` will compile our code to binary code which called `assembly` is contained in `dll file (Dynamic Link Library)`
 
@@ -485,7 +503,7 @@ Set method:
 
 ## Startup.cs
 
-<img src="./img/17.PNG" width="900">
+<img src="./img/17.png" width="900">
 
 ## Why Generic Repository is an anti pattern?
 
@@ -568,8 +586,81 @@ Derived types must be completely substitutable for their base types
 
 ```Dependency Inversion principle (DIP)```
 
-- High-level modules should not depend on low level modules 
+> Depend upon abstractions. Do not depend upon concrete classes.
 
 <img src="./img/20.PNG" width="900">
 
+# Interview
 
+## What's the difference of ASP.Net and .Net Core?
+
+ASP.NET: is a framwork of .NET Core for building web-api
+
+.NET Core: is a open-source platform for building many kind of allication, include web application
+
+## What access modifiers exist in C#?
+
+Public: mean that the type/member is available for all other code in the same assembly 
+
+Private: mean that the type/member are only available in the same class
+
+Protected: mean that the type/member are only available in the same class or in the class derived from this class 
+
+Static: static class can not be instanciated ( cannot use `new operator` to create class) - we access the method of static class by calling class name itself
+
+    ex: Console.Wriline()
+
+## What design patterns and software principles have you worked with?
+
+OOP principle
+
+SOLID principle
+
+Dependency Injection principle
+
+Generic Repository pattern
+
+Specificaiton pattern
+
+Mediator patern
+
+## What is singleton?
+
+Singleton: our dependency will intanciated when our application start and remain/alive whole lifetime of our application
+
+## What is a difference between string and stringbuilder? When would you use over the other?
+
+String: string is immutable - it mean when we save a string in to variable - we save the actual value of string in memory.
+
+> When we change string - it will create new place in memory rather than changing the actual value sit on memory
+
+StringBuilder: is mutable
+
+> When we change stringBuilder -  we change the actual value sit on memory
+
+> StringBuilder helpful when we have to append or concat string, because it do not create new string in memory - do not cause memory leak.
+
+## What memory leaks you are aware of in C#?
+
+If we use string type, whenever we concat or append string, it will create new string variable in memory -> lead to memory leak 
+
+Keeping database connections or result sets open when they are not used. Remember to call Dispose() on all IDisposable objects. Use the using statement.
+
+## What's the purpose of garbage collector?
+
+GC help us to manage memory automatically
+
+- Allocate object on memory heap rather than stack
+
+- Clean variable when it no longer in use -> release memory
+
+## How do you handle errors in C#?
+
+```
+try {
+
+}
+catch {
+
+}
+```
