@@ -16,6 +16,7 @@ some little note by myself to remind what did i learn
 | 2   | [Class](#class)                           |
 | 3   | [Unit Test](#unit-test)                   |
 | 4   | [Error Handling](#error-handling)                   |
+| 5   | [Authentication and Authorization](#authentication-and-authorization)                   |
 
 # Section 01 - THE BASIC
 
@@ -590,77 +591,14 @@ Derived types must be completely substitutable for their base types
 
 <img src="./img/20.PNG" width="900">
 
-# Interview
+# Authentication and Authorization
 
-## What's the difference of ASP.Net and .Net Core?
+> Authentication is the process determine who the user is
 
-ASP.NET: is a framwork of .NET Core for building web-api
+> Authorization is the process determine what the user can do - or what resources user be able to accessed or what user is able to do
 
-.NET Core: is a open-source platform for building many kind of allication, include web application
+> For authorization to work, the user should authentication first, becuase the indentity of the user is needed to indentify what the role of particular user
 
-## What access modifiers exist in C#?
+https://www.youtube.com/watch?v=vWkPdurauaA&t=1402s
 
-Public: mean that the type/member is available for all other code in the same assembly 
-
-Private: mean that the type/member are only available in the same class
-
-Protected: mean that the type/member are only available in the same class or in the class derived from this class 
-
-Static: static class can not be instanciated ( cannot use `new operator` to create class) - we access the method of static class by calling class name itself
-
-    ex: Console.Wriline()
-
-## What design patterns and software principles have you worked with?
-
-OOP principle
-
-SOLID principle
-
-Dependency Injection principle
-
-Generic Repository pattern
-
-Specificaiton pattern
-
-Mediator patern
-
-## What is singleton?
-
-Singleton: our dependency will intanciated when our application start and remain/alive whole lifetime of our application
-
-## What is a difference between string and stringbuilder? When would you use over the other?
-
-String: string is immutable - it mean when we save a string in to variable - we save the actual value of string in memory.
-
-> When we change string - it will create new place in memory rather than changing the actual value sit on memory
-
-StringBuilder: is mutable
-
-> When we change stringBuilder -  we change the actual value sit on memory
-
-> StringBuilder helpful when we have to append or concat string, because it do not create new string in memory - do not cause memory leak.
-
-## What memory leaks you are aware of in C#?
-
-If we use string type, whenever we concat or append string, it will create new string variable in memory -> lead to memory leak 
-
-Keeping database connections or result sets open when they are not used. Remember to call Dispose() on all IDisposable objects. Use the using statement.
-
-## What's the purpose of garbage collector?
-
-GC help us to manage memory automatically
-
-- Allocate object on memory heap rather than stack
-
-- Clean variable when it no longer in use -> release memory
-
-## How do you handle errors in C#?
-
-```
-try {
-
-}
-catch {
-
-}
-```
+https://www.youtube.com/watch?v=-N6O2rtCdI8
